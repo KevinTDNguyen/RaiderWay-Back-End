@@ -1,0 +1,33 @@
+[
+
+{
+    "name": "Calculus and Vectors",
+    "code": "MCV 4UI",
+    "prereq": ["MHF 4UI"]
+},
+
+{
+    "name": "Advanced Functions",
+    "code": "MHF 4UI",
+    "prereq": ["MCR 3UI", "MCT 4CI"]
+},
+
+{
+    "name": "Functions",
+    "code": "MCR 3UI",
+    "prereq": ["MPM 2DI"]
+},
+
+{
+    "name": "Principles of Mathematics",
+    "code": "MPM 2DI",
+    "prereq": ["MTH 1WI"]
+},
+
+{
+    "name": "Mathematics",
+    "code": "MTH 1WI",
+    "prereq": []
+}
+
+]
