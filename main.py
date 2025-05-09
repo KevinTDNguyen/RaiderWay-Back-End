@@ -47,7 +47,3 @@ to quickly view the contents of the dictionary copy & paste the loop below
 """
 # for item in allCourses:
 #     print(item + ": " + allCourses[item].name)
-
-
-
-

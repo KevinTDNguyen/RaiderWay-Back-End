@@ -3,25 +3,29 @@
 {
     "name": "Calculus and Vectors",
     "code": "MCV 4UI",
-    "prereq": ["MHF 4UI"]
+    "prereq": ["MHF 4UI"],
+    "desc": "This course builds on students’ previous experience with functions and their developing understanding of rates of change. Students will solve problems involving geometric and algebraic representations of vectors, and representations of lines and planes in three-dimensional space; broaden their understanding of rates of change to include the derivatives of polynomial, rational, exponential, and sinusoidal functions; and apply these concepts and skills to the modelling of real-world relationships. Students will also refine their use of the mathematical processes necessary for success in senior mathematics. This course is intended for students who plan to study mathematics in university and who may choose to pursue careers in fields such as physics and engineering."
 },
 
 {
     "name": "Advanced Functions",
     "code": "MHF 4UI",
-    "prereq": ["MCR 3UI", "MCT 4CI"]
+    "prereq": ["MCR 3UI", "MCT 4CI"],
+    "desc": "This course extends students’ experience with functions. Students will investigate the properties of polynomial, rational, logarithmic, and trigonometric functions; broaden their understanding of rates of change; and develop facility in applying these concepts and skills. Students will also refine their use of the mathematical processes necessary for success in senior mathematics. This course is intended both for students who plan to study mathematics in university and for those wishing to consolidate their understanding of mathematics before proceeding to any one of a variety of university programs."
 },
 
 {
     "name": "Functions",
     "code": "MCR 3UI",
-    "prereq": ["MPM 2DI"]
+    "prereq": ["MPM 2DI"],
+    "desc": "This course enables students to broaden their understanding of relationships and extend their problem-solving and algebraic skills through investigation, the effective use of technology, and abstract reasoning. Students will explore quadratic relationships and their applications; solve and apply linear systems; verify properties of geometric figures using analytic geometry; and investigate the trigonometry of right and acute triangles. Students will reason mathematically as they solve multistep problems and communicate their thinking."
 },
 
 {
     "name": "Principles of Mathematics",
     "code": "MPM 2DI",
-    "prereq": ["MTH 1WI"]
+    "prereq": ["MTH 1WI"],
+    "decs"
 },
 
 {
