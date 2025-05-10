@@ -1,26 +1,22 @@
 class Course:
     visited = list()
 
-    def __init__(self, name, courseCode):
+    def __init__(self, name, code):
         self.name = name
-        self.courseCode = courseCode
-        self.prerequisite = list()
+        self.code = code
+        self.prerequisites = list()
         """
         None is the equivalent of 'null' in java, basically it is the "no-value" value in Python.
         However, you must assign it manually, python DOES NOT automatically assign a variable as None when
         it doesn't exist.
         """
+    
+    def addPrerequisite(self, prerequisite):
+        self.prerequisites.append(prerequisite)
 
-    def setPrerequisite(self, prerequisite):
-        self.prerequisite.append(prerequisite)
+    def toDict(self):
+        prereqCodeStr = ""
+        for prereq in self.prerequisites:
+            prereqCodeStr += (prereq.code + " ")
+        return {"name" : self.name, "code" : self.code, "prereqs" : prereqCodeStr}
 
-    def printPrerequisite(self):
-
-        if len(self.prerequisite) != 0:
-            for prereq in self.prerequisite:
-                if prereq not in Course.visited:
-                    Course.visited.append(prereq)
-                    obj = prereq
-                    obj.printPrerequisite()
-
-        print(self.name)

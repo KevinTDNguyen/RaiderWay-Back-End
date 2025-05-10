@@ -25,13 +25,14 @@
     "name": "Principles of Mathematics",
     "code": "MPM 2DI",
     "prereq": ["MTH 1WI"],
-    "decs"
+    "desc": "This course enables students to broaden their understanding of relationships and extend their problem-solving and algebraic skills through investigation, the effective use of technology, and abstract reasoning. Students will explore quadratic relationships and their applications; solve and apply linear systems; verify properties of geometric figures using analytic geometry; and investigate the trigonometry of right and acute triangles. Students will reason mathematically as they solve multistep problems and communicate their thinking."
 },
 
 {
     "name": "Mathematics",
     "code": "MTH 1WI",
-    "prereq": []
+    "prereq": [],
+    "desc": "This course enables students to consolidate, and continue to develop, an understanding of mathematical concepts related to number sense and operations, algebra, measurement, geometry, data, probability, and financial literacy. Students will use mathematical processes, mathematical modelling, and coding to make sense of the mathematics they are learning and to apply their understanding to culturally responsive and relevant real-world situations. Students will continue to enhance their mathematical reasoning skills, including proportional reasoning, spatial reasoning, and algebraic reasoning, as they solve problems and communicate their thinking"
 }
 
 ]

@@ -1,26 +1,39 @@
+from flask import Flask, jsonify
 import json
 from Course import Course
 
 """
-Below was the ancient way of initializing prerequisites and courses
+this is the flask constructor for the Flask class --> it is good form to do __name__ but 
+any string works :D
 """
-# math1 = Course("Math1", "MTH1")
-# math2 = Course("Math2", "MTH2")
-# math3A = Course("Math3A", "MTH3A")
-# math3B = Course("Math3B", "MTH3B")
-# math4 = Course("Math4", "MTH4")
+app = Flask(__name__) 
 
-# math4.setPrerequisite(math3A)
-# math4.setPrerequisite(math3B)
-# math3A.setPrerequisite(math2)
-# math3B.setPrerequisite(math2)
-# math2.setPrerequisite(math1)
-
-# math4.printPrerequisite()
+#python flask torture
+@app.route("/getprereqs/<coursecode>", methods = ["GET", "POST"])
+def getPrereqs(coursecode): # need to make a way to pass a local argument
+    
+    prereqList = list()
+    dictList = list()
+    obj = allCourses.get(coursecode)
+    while True:
+        if len(obj.prerequisites) == 0:
+            for courseObj in prereqList:
+                dictList.append(courseObj.toDict())
+            return jsonify(dictList)
+        
+        for i in range(len(obj.prerequisites)):
+            prereqList.append(obj.prerequisites[i])
+            if i == len(obj.prerequisites) - 1:
+                obj = obj.prerequisites[i]     
+          
+@app.route("/")
+def printHi():
+    return allCourses.get("MTH1").name # DICTIONARIES ARE ALL GLOBAL IN PYTHON AND CAN BE ACCESSED ANYWHERE
 
 """
 Revised way of initializing and setting prerequisites
 """
+
 allCourses = dict() # init dictionary w/ course objects
 
 with open("proof.json", "r") as file:
@@ -29,21 +42,30 @@ with open("proof.json", "r") as file:
 for course in course_data: #this loop initiates all objects
     allCourses[course["code"]] = Course(course["name"], course["code"])
 
-#inits prereqs
+#inits prereqs database
 for jsonObj in course_data:
     course = allCourses[jsonObj["code"]] #gets the current course object in the allCourses dictionary using the obj["code"] as a key
     for prereqCode in jsonObj["prereq"]:
-        prereqObj = allCourses[prereqCode] #redundant for clarity
-        course.setPrerequisite(prereqObj)
+        prereqObj = allCourses.get(prereqCode) #.get() prevents crashes when a key doesn't exist --> this keeps the course prereq field empty
+        if prereqObj:
+            course.addPrerequisite(prereqObj)
 
-for course in allCourses:
-    prereqStr = ""
-    for prereq in allCourses[course].prerequisite:
-        prereqStr += prereq.courseCode + " "
-    print(course + ": " + prereqStr)
+# localList = getPrereqs(allCourses["MTH4"])
+
+# for item in localList:
+#     print(item["name"])
+
+app.run(host="0.0.0.0", port=80)
+"""
+Prints out all courses and prereqs
+"""
+# for course in allCourses:
+#     prereqStr = ""
+#     for prereq in allCourses[course].prerequisite:
+#         prereqStr += prereq.code + " "
+#     print(course + ": " + prereqStr)
 
 """
-to quickly view the contents of the dictionary copy & paste the loop below
-"""
-# for item in allCourses:
-#     print(item + ": " + allCourses[item].name)
+-NOTES-
+use .get(key) method when accessing a potentially non-existant key
+""" 
