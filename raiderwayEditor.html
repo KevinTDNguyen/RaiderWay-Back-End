@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raiderway JSON Maker</title>
+</head>
+<body>
+    <a href="https://google.com">To Raiderway Main Website</a>
+
+    <hr>
+
+    <h1>Welcome to the Raiderway Course Editor!</h1>
+    <p>Courses change all the time; this editor helps create or update existing files for the Raiderway website!</p>
+    <p>Each course needs <b>4</b> things:</p>
+    
+    <ul>
+        <li>A Course Name</li>
+        <li>A Course Code</li>
+        <li>Its Prerequisites</li>
+        <li>The Course Description</li>
+    </ul>
+
+    <p>You can select any course found in the file, and change these</p>
+
+    <hr>
+
+    <h2>Editor</h2>
+    
+    <div class="editor">
+
+        <label for="file-input">Open JSON File:</label>
+        <input type="file" id="file-input" accept="application/json" title="Select your Raiderway file here">
+        
+        <br><br>
+
+        <button id="download-btn">Download as JSON</button>
+
+        <br><br>
+        
+        <button id="add-btn">Add New Course</button>
+        <button id="remove-btn">Remove Selected Course</button>
+        <ul id="item-list" class="scroll-list"></ul>
+        
+        <br>
+        
+        <label>Course Name</label><br>
+        <input type="text" id="name-field">
+        
+        <br><br>
+        
+        <label>Course Code</label><br>
+        <input type="text" id="code-field">
+        
+        <br><br>
+        
+        <label>Course Description</label><br>
+        <textarea id="desc-field"></textarea>
+        
+        <br><br>
+        
+        <label>Course Prerequisite Codes</label><br>
+        <textarea id="preq-field" placeholder="Separate codes with commas (e.g. MCR 3UI, MCT 4CI)"></textarea>
+    
+    </div>
+
+
+    <script>
+        fileInput = document.getElementById("file-input");
+        downloadBtn = document.getElementById("download-btn");
+        addCourseBtn = document.getElementById("add-btn");
+        removeCourseBtn = document.getElementById("remove-btn");
+        itemList = document.getElementById("item-list");
+        nameField = document.getElementById("name-field");
+        codeField = document.getElementById("code-field");
+        descField = document.getElementById("desc-field");
+        preqField = document.getElementById("preq-field");
+
+
+        let selectedIndex = -1;
+        let courses = []; 
+
+
+        fileInput.addEventListener("change", event =>
+        {
+            file = event.target.files[0];
+
+            if (file) 
+            {
+                reader = new FileReader();
+                reader.onload = e => 
+                {
+                    try 
+                    {
+                        courses = JSON.parse(e.target.result);
+                        selectedIndex = -1;
+                        renderList();
+                    } 
+                    
+                    catch (err) 
+                    {
+                        alert("Invalid JSON file! Make sure it hasnt been modified!");
+                    }
+                };
+                reader.readAsText(file); 
+            }
+        });
+
+        downloadBtn.addEventListener("click", () =>
+        {
+            data = JSON.stringify(courses, null, 2);
+            blob = new Blob([data], {
+                type: 'application/json',
+            });
+            url = URL.createObjectURL(blob);
+            a = document.createElement('a');
+            a.href = url;
+            a.download = 'RaiderwayCourses.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        function renderList() 
+        {
+            itemList.innerHTML = '';
+
+            courses.forEach((course, index) => 
+            {
+                li = document.createElement('li');
+
+                li.textContent = course.name;
+
+                li.addEventListener('click', () => selectCourse(index));
+                
+                itemList.appendChild(li);
+            });
+        }
+
+        function selectCourse(index) 
+        {
+            selectedIndex = index;
+            course = courses[index];
+            nameField.value = course.name;
+            codeField.value = course.code;
+            descField.value = course.desc;
+            preqField.value = course.prereq.join(', ');
+            renderList();
+        }
+
+        nameField.addEventListener("change", event =>
+        {
+            course = courses[selectedIndex];
+            course.name = nameField.value;
+            renderList();
+        });
+        codeField.addEventListener("change", event =>
+        {
+            course = courses[selectedIndex];
+            course.code = codeField.value;
+            renderList();
+        });
+        descField.addEventListener("change", event =>
+        {
+            course = courses[selectedIndex];
+            course.desc = descField.value;
+            renderList();
+        });
+        preqField.addEventListener("change", event =>
+        {
+            course = courses[selectedIndex];
+            course.prereq = preqField.value.split(',');
+            renderList();
+        });
+
+        addCourseBtn.addEventListener("click", () =>
+        {
+            newCourse = 
+            {
+                name: nameField.value,
+                code: codeField.value,
+                prereq: preqField.value.split(','),
+                desc: descField.value
+            };
+            courses.push(newCourse);
+            selectedIndex = courses.length - 1;
+            renderList();
+        });
+
+        removeCourseBtn.addEventListener("click", () =>
+        {
+            if(selectedIndex != -1)
+            {
+                courses.splice(selectedIndex, 1);
+                selectedIndex = -1;
+                nameField.value = "";
+                codeField.value = "";
+                descField.value = "";
+                preqField.value = "";
+                renderList();
+            }   
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+
+
