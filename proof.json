@@ -1,33 +1,33 @@
 [
     
-{
-    "name": "Math 4",
-    "code": "MTH4",
-    "prereq": ["MTH3A", "MTH3B"]
-},
+    {
+        "name": "Math 4",
+        "code": "MTH4",
+        "prereq": ["MTH3A", "MTH3B"]
+    },
 
-{
-    "name": "Math 3A",
-    "code": "MTH3A",
-    "prereq": ["MTH2"]
-},
+    {
+        "name": "Math 3A",
+        "code": "MTH3A",
+        "prereq": ["MTH2"]
+    },
 
-{
-    "name": "Math 3B",
-    "code": "MTH3B",
-    "prereq": ["MTH2"]
-},
+    {
+        "name": "Math 3B",
+        "code": "MTH3B",
+        "prereq": ["MTH2"]
+    },
 
-{
-    "name": "Math 2",
-    "code": "MTH2",
-    "prereq": ["MTH1"]
-},
+    {
+        "name": "Math 2",
+        "code": "MTH2",
+        "prereq": ["MTH1"]
+    },
 
-{
-    "name": "Math 1",
-    "code": "MTH1",
-    "prereq": []
-}
+    {
+        "name": "Math 1",
+        "code": "MTH1",
+        "prereq": []
+    }
 
 ]

@@ -1,6 +1,6 @@
 class Course:
     visited = list()
-
+    
     def __init__(self, name, code):
         self.name = name
         self.code = code
@@ -18,5 +18,8 @@ class Course:
         prereqCodeStr = ""
         for prereq in self.prerequisites:
             prereqCodeStr += (prereq.code + " ")
-        return {"name" : self.name, "code" : self.code, "prereqs" : prereqCodeStr}
+
+        prereqCodeStr = prereqCodeStr[0: len(prereqCodeStr)-1]    
+
+        return {"name" : self.name, "code" : self.code, "prereq" : prereqCodeStr}
 

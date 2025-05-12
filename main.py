@@ -9,7 +9,7 @@ any string works :D
 app = Flask(__name__) 
 
 #python flask torture
-@app.route("/getprereqs/<coursecode>", methods = ["GET", "POST"])
+@app.route("/getprereqs/<coursecode>", methods = ["GET"])
 def getPrereqs(coursecode): # need to make a way to pass a local argument
     
     prereqList = list()
@@ -26,9 +26,9 @@ def getPrereqs(coursecode): # need to make a way to pass a local argument
             if i == len(obj.prerequisites) - 1:
                 obj = obj.prerequisites[i]     
           
-@app.route("/")
-def printHi():
-    return allCourses.get("MTH1").name # DICTIONARIES ARE ALL GLOBAL IN PYTHON AND CAN BE ACCESSED ANYWHERE
+# @app.route("/")
+# def printHi():
+#     return allCourses.get("MTH1").name # DICTIONARIES ARE ALL GLOBAL IN PYTHON AND CAN BE ACCESSED ANYWHERE
 
 """
 Revised way of initializing and setting prerequisites
